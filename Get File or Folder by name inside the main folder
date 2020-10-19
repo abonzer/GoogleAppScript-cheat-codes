@@ -1,0 +1,108 @@
+// only finds files / folders inside the main folder, not in the all nested folders of the main folder. Suppose the name of all files or folders inside the main folder is unique
+
+
+
+// 1. Check if a file exists (by name) inside the main folder. If a file exists, return that file, otherwise create a new file with the same name and return it
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+function findtestFile(mainFolder, chkFileName, FileDataTXT) {
+    var chkfile, files, myFile, resp, isDuplicate;
+    resp = "none";
+    files = mainFolder.getFiles();
+
+    while (files.hasNext()) {
+        chkfile = files.next();
+        if (chkfile.getName() == chkFileName) {
+            resp = "Find";
+            isDuplicate = "Duplicate";
+            myFile = chkfile;
+        }
+    }
+
+    if (resp != "Find") {
+        myFile = mainFolder.createFile(chkFileName, FileDataTXT);
+        isDuplicate = "NewFile";
+    }
+    return [myFile, isDuplicate];
+}
+
+
+
+// 2. Check if a Folder exists (by name) inside the main folder. If a file exists, return that file, otherwise create a new file with the same name and return it
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+function findFolder(mainFolder, chkFolderName) {
+    var chkfolder, folders, myFolder, resp;
+    resp = "none";
+    folders = mainFolder.getFolders();
+
+    while (folders.hasNext()) {
+        chkfolder = folders.next();
+        if (chkfolder.getName() == chkFolderName) {
+            resp = "Find";
+            myFolder = chkfolder;
+        }
+    }
+
+    if (resp != "Find") {
+        myFolder = mainFolder.createFolder(chkFolderName);
+    }
+
+    return myFolder;
+}
+
+
+
+
+
+// 3. Check if a folder exists (Which has a particular string in its name) inside the main folder. If a file exists, return it
+// ---------------------------------------------------------------------------------------------------------
+
+function findFolderByID(mainFolder, chkStrInFolderName) {
+    var chkfolder, folders, myFolder, resp;
+    resp = "none";
+    folders = mainFolder.getFolders();
+
+    while (folders.hasNext()) {
+        chkfolder = folders.next();
+        if (chkfolder.getName().search(chkStrInFolderName) >= 0) {
+            resp = "Find";
+            myFolder = chkfolder;
+        }
+    }
+
+    if (resp != "Find") {
+        myFolder = "notFoundFolderWithStr";
+    }
+    
+    return [resp, myFolder];
+}
+
+
+
+
+
+
+// 4. validate or check if a folder exists or not inside the main folder (with name)
+// -----------------------------------------------------------------------------------------------------
+
+function validateFolder(mainFolder, chkFolderName) {
+    var chkfolder, folders, myFolder, resp;
+    resp = "none";
+    folders = mainFolder.getFolders();
+
+    while (folders.hasNext()) {
+        chkfolder = folders.next();
+        if (chkfolder.getName() == chkFolderName) {
+            resp = "Find";
+            myFolder = chkfolder;
+        }
+    }
+
+    if (resp != "Find") {
+        return ["invalid", "none"];
+    } else {
+        return ["valid", myFolder];
+    }
+}
+
