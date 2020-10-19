@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            var jsonResp;
+
+            var dataURIstring = 'data:image/png;base64,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';
+
+            sentImgDataUri();
+            function sentImgDataUri(){
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  jsonResp = JSON.parse(this.responseText);
+
+                  if(jsonResp.action == "Success"){
+                  	alert('success');
+                  }else{
+                     alert(jsonResp.action);
+                  }
+
+                }
+              };
+              xhttp.open("POST", "https://script.google.com/macros/s/AKfycbxBMHnXXXXXXXXXXXXXXXXXXXXXX/exec", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send("fileName=" + "myimage.png"+ "&imgData=" + dataURIstring);
+            }
+
+        </script>
+    </body>
+</html>
